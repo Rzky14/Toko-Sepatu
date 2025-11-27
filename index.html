@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+        <div class="container">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Cari sepatu..." autocomplete="off">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="close-search" id="closeSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -29,6 +45,13 @@
                 </nav>
                 
                 <div class="nav-icons">
+                    <div class="search-icon" id="searchIcon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="wishlist-icon" id="wishlistIcon">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count" id="wishlistCount">0</span>
+                    </div>
                     <div class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count" id="cartCount">0</span>
@@ -143,7 +166,7 @@
             <h2 class="section-title">Produk Unggulan</h2>
             <div class="product-grid" id="productGrid">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" data-product-id="1">
                     <div class="product-badge">Best Seller</div>
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Nike Air Max">
@@ -162,9 +185,17 @@
                             <span class="price-new">Rp 1.299.000</span>
                             <span class="price-old">Rp 1.599.000</span>
                         </p>
-                        <button class="btn btn-add-cart" onclick="addToCart(1, 'Nike Air Max 2025', 1299000)">
-                            <i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang
-                        </button>
+                        <div class="product-actions">
+                            <button class="btn btn-add-cart" onclick="addToCart(1, 'Nike Air Max 2025', 1299000, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop')">
+                                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                            </button>
+                            <button class="btn-icon btn-wishlist" onclick="toggleWishlist(1, 'Nike Air Max 2025', 1299000, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop')" title="Tambah ke Wishlist">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="btn-icon btn-quick-view" onclick="quickView(1, 'Nike Air Max 2025', 1299000, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop', 'Sneakers premium dengan teknologi Air Max terbaru untuk kenyamanan maksimal.')" title="Quick View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -187,9 +218,17 @@
                         <p class="product-price">
                             <span class="price-new">Rp 1.499.000</span>
                         </p>
-                        <button class="btn btn-add-cart" onclick="addToCart(2, 'Adidas Ultraboost 22', 1499000)">
-                            <i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang
-                        </button>
+                        <div class="product-actions">
+                            <button class="btn btn-add-cart" onclick="addToCart(2, 'Adidas Ultraboost 22', 1499000, 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop')">
+                                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                            </button>
+                            <button class="btn-icon btn-wishlist" onclick="toggleWishlist(2, 'Adidas Ultraboost 22', 1499000, 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop')" title="Tambah ke Wishlist">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="btn-icon btn-quick-view" onclick="quickView(2, 'Adidas Ultraboost 22', 1499000, 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop', 'Sepatu running dengan teknologi Boost untuk responsivitas maksimal.')" title="Quick View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -516,6 +555,29 @@
 
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Product Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Memuat...</p>
+    </div>
 
     <script src="script.js"></script>
 </body>
